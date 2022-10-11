@@ -307,6 +307,8 @@ public class SudokuSolver implements Cloneable {
                 }
             }
             if (preSolvedCount == solvedCount) {
+                // this.print();
+                // System.out.println("Sovled cells count: " + this.solvedCount);
                 // need to do trying
                 if (!dfs(this)) {
                     break;
@@ -345,7 +347,7 @@ public class SudokuSolver implements Cloneable {
 
         Character validTryValue = null;
 
-        System.out.println("Trying " + tryCell.key + " ...");
+        System.out.println("Backtracking " + tryCell.key + " ...");
         sudoku.triedKeys.add(tryCell.key);
         for (Character tryC : tryCell.values) {
             validTryValue = tryC;
@@ -365,7 +367,7 @@ public class SudokuSolver implements Cloneable {
             }
         }
         if (validTryValue != null) {
-            System.out.println("Trying " + tryCell.key + ", found " + validTryValue);
+            System.out.println("Backtracking " + tryCell.key + " now solved with " + validTryValue);
             return true;
         } else {
             // This search does not lead to a solution.

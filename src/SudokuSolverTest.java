@@ -33,6 +33,22 @@ public class SudokuSolverTest {
                     {'.','2','6','3','.','.','5','.','.'},
                     {'5','.','3','7','.','.','.','.','8'},
                     {'4','7','.','.','.','1','.','.','.'}}
+            },
+            {
+                // The Hardest-Ever Sudoku
+                // https://abcnews.go.com/blogs/headlines/2012/06/can-you-solve-the-hardest-ever-sudoku
+                new char[][] {
+                    {'8','.','.','.','.','.','.','.','.'},
+                    {'.','.','3','6','.','.','.','.','.'},
+                    {'.','7','.','.','9','.','2','.','.'},
+                    
+                    {'.','5','.','.','.','7','.','.','.'},
+                    {'.','.','.','.','4','5','7','.','.'},
+                    {'.','.','.','1','.','.','.','3','.'},
+                    
+                    {'.','.','1','.','.','.','.','6','8'},
+                    {'.','.','8','5','.','.','.','1','.'},
+                    {'.','9','.','.','.','.','4','.','.'}}
             }
         };
     }
@@ -40,7 +56,11 @@ public class SudokuSolverTest {
     @Test(dataProvider = "testCases")
     public void testSudoku(char[][] board) {
         SudokuSolver sudoku = new SudokuSolver(board);
+        long start = System.currentTimeMillis();
         sudoku.solve();
+        long finish = System.currentTimeMillis();
+        long timeElapsed = finish - start;
+        System.out.println("Solved in " + (((double)timeElapsed)/1000) + " s");
         sudoku.print();
         boolean validationResult = sudoku.validate();
         Assert.assertTrue(validationResult, null);
